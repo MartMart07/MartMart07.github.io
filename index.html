@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: #ff4d79;
+            color: white;
+        }
+        .no {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <h2 id="question">Will you be my Valentine? ❤️</h2>
+        <div class="buttons" id="main-buttons">
+            <button class="yes" onclick="acceptValentine()">Yes</button>
+            <button class="no" onclick="askAreYouSure()">No</button>
+        </div>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function playMusic() {
+            let iframe = document.createElement("iframe");
+            iframe.src = "https://www.youtube.com/embed/tyKu0uZS86Q?autoplay=1&loop=1&playlist=tyKu0uZS86Q";
+            iframe.allow = "autoplay";
+            iframe.style.display = "none";
+            document.body.appendChild(iframe);
+        }
+
+        function acceptValentine() {
+            document.getElementById('message').innerText = "YIPPIE YEHAY YAHOO :>>> :))))";
+            playMusic();
+            document.getElementById('main-buttons').innerHTML = ""; 
+        }
+
+        function askAreYouSure() {
+            document.getElementById('message').innerText = "Are you sure na ayaw mo :<<<";
+            document.getElementById('main-buttons').innerHTML = `
+                <button class="yes" onclick="askFinalAnswer()">Yes, pass talaga</button>
+                <button class="no" onclick="resetToInitial()">No, I changed my mind</button>
+            `;
+        }
+
+        function askFinalAnswer() {
+            document.getElementById('message').innerText = "Are you really, really sure????? Like final answer???";
+            document.getElementById('main-buttons').innerHTML = `
+                <button class="yes" onclick="wrongAnswer()">Yes Final answer</button>
+                <button class="no" onclick="resetToInitial()">No, I will really change my mind</button>
+            `;
+        }
+
+        function wrongAnswer() {
+            document.getElementById('message').innerText = "Wrong Answer please try again, please click 'No, I will really change my mind'";
+        }
+
+        function resetToInitial() {
+            document.getElementById('question').innerText = "Will you be my Valentine? ❤️";
+            document.getElementById('message').innerText = "";
+            document.getElementById('main-buttons').innerHTML = `
+                <button class="yes" onclick="acceptValentine()">Yes</button>
+            `;
+        }
+    </script>
+</body>
+</html>
